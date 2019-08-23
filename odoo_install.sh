@@ -222,10 +222,15 @@ start-stop-daemon --start --quiet --pidfile \$PIDFILE \
 echo "\${NAME}."
 ;;
 status)
-echo -n "Status \${DESC}: "
-start-stop-daemon --status --pidfile \$PIDFILE \
---oknodo
-echo "\${NAME}."
+echo -n "Current Status of ${DESC}:"
+procs=$?
+if [ $procs -eq 1 ] ; then
+detailed_info "RUNNING" $procs
+elif [ $procs -eq 0 ] ; then
+display 1 "STOPPED"
+else
+detailed_info "" $procs
+fi
 ;;
 *)
 N=/etc/init.d/\$NAME
