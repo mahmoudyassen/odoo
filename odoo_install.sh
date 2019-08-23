@@ -66,7 +66,7 @@ echo -e "\n--- Installing Python 3 + pip3 --"
 sudo apt-get install git python3 python3-pip build-essential wget python3-dev python3-venv python3-wheel libxslt-dev libzip-dev libldap2-dev libsasl2-dev python3-setuptools node-less libpng12-0 gdebi -y
 
 echo -e "\n---- Install python packages/requirements ----"
-sudo pip3 install -r https://github.com/odoo/odoo/raw/${OE_VERSION}/requirements.txt
+sudo pip3 install -r https://github.com/odoo/odoo/tree/${OE_VERSION}/requirements.txt
 
 echo -e "\n---- Installing nodeJS NPM and rtlcss for LTR support ----"
 sudo apt-get install nodejs npm
@@ -221,9 +221,15 @@ start-stop-daemon --start --quiet --pidfile \$PIDFILE \
 --exec \$DAEMON -- \$DAEMON_OPTS
 echo "\${NAME}."
 ;;
+status)
+echo -n "Status \${DESC}: "
+start-stop-daemon --status --pidfile \$PIDFILE \
+--oknodo
+echo "\${NAME}."
+;;
 *)
 N=/etc/init.d/\$NAME
-echo "Usage: \$NAME {start|stop|restart|force-reload}" >&2
+echo "Usage: \$NAME {start|stop|restart|force-reload|status}" >&2
 exit 1
 ;;
 esac
