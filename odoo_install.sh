@@ -183,7 +183,7 @@ NAME=$OE_CONFIG
 DESC=$OE_CONFIG
 # Specify the user name (Default: odoo).
 USER=$OE_USER
-# Specify an alternate config file (Default: /etc/openerp-server.conf).
+# Specify an alternate config file (Default: /etc/odoo-server.conf).
 CONFIGFILE="/etc/${OE_CONFIG}.conf"
 # pidfile
 PIDFILE=/var/run/\${NAME}.pid
